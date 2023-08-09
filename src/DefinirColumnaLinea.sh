@@ -1,5 +1,5 @@
   #### - Incorporar en:
-  ####   $HOME/Documents/TrabajosExtra/ivan/src/DefinirExtraccionMotos.sh
+  ####   ruta_relativa
   ####   para que se genere la columna linea
   #### - Revisar cada bot para colectar los nombres de las lineas si las hay
   #### - Plan A: asignar nombre de linea desde aqui.

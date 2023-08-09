@@ -1,5 +1,5 @@
   #### - Incorporar en:
-  ####   $HOME/Documents/TrabajosExtra/ivan/src/DefinirExtraccionMotos.sh
+  ####   ruta_relativa
   ####   para que se genere la columna fecha
   #### - Usar funcion stat en vez de ls para agregar año automaticamente
 
