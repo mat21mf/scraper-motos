@@ -174,11 +174,13 @@
     echo "${ImprimirExtraccionMotos02}" \
     | gawk '{if($0 !~ /honda_02_01/) {print $0}}' \
     | gawk '{if($0 !~ /honda_02_02/) {print $0}}' \
-    | grep -v 'honda\|yamaha' \
+    | grep -i 'yamaha' \
+    | grep -v 'honda' \
     | sed -r '/yamaha/!s/(.*) (.*) (.*)\/([a-z]+)_([0-9]{2})_(.*)\.(.*) ;/paste <(\1 \2 \3\/\4_\5_\6\.\7 ) <( echo \"\4_\5_\6\" | gawk -F'\''_'\'' '\''{print $4, $5, $6}'\'' OFS='\''_'\'') <(  ObtenerIncrementador01 \"\4_\5\" )/
               /yamaha/s/(.*) (.*) (.*)\/([a-z]+)_([0-9]{2})_(.*)\.(.*) ;/paste <(\1 \2 \3\/\4_\5_\6\.\7 ) <( \1 \3\/\4_\5_\6\.\7 ) <( echo \"\4_\5_\6\" | gawk -F'\''_'\'' '\''{print $4, $5, $6}'\'' OFS='\''_'\'') <(  ObtenerIncrementador01 \"\4_\5\" )/' \
     | sed -r '/yamaha/s/(.*)\.html/\1\.json/;/yamaha/s/(.*)htmdir/\1jsndir/;/yamaha/s/(.*)ExtraccionMotos/\1LlamarYamaha/' \
     )
+  echo    "${TestearAdicionarLinea02}"
  #bash -c "${TestearAdicionarLinea02}"
   #### }}}
 
@@ -210,7 +212,16 @@
                   NR>=2 && !/marca/ {print}' \
     )
  #echo  "${EvaluarExtraccionMotos02}"
-  echo  "${EvaluarExtraccionMotos02}" > "$csvdir/$fleout"
+ #echo  "${EvaluarExtraccionMotos02}" > "$csvdir/$fleout"
+
+  declare -x ReordenarExtraccionMotos02=$( \
+    echo "${EvaluarExtraccionMotos02}" \
+    | gawk -F'|' '{print $1,$2,$4,$3,$5,$6,$7}' OFS='|' \
+    ) 
+
+  #### Corregido y definitivo
+# echo    "${ReordenarExtraccionMotos02}"
+ #echo    "${ReordenarExtraccionMotos02}" > "$csvdir/$fleout"
 
   #### ====================
   #### No usar lo siguiente
